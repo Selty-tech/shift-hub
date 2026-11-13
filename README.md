@@ -8,6 +8,8 @@ This is an independent portfolio implementation. It is not the original workplac
 
 ## Current milestone
 
+See [TASKS.md](./TASKS.md) for the persistent milestone list and session workflow.
+
 - German mobile-first interface with desktop navigation.
 - Home dashboard with fictional team updates, training reminder, scheduled demo team, checklist progress, and fictional KPI readings.
 - Date and shift selection for Frühschicht, Mittelschicht, and Spätschicht.
