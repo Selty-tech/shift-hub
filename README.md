@@ -15,7 +15,10 @@ See [TASKS.md](./TASKS.md) for the persistent milestone list and session workflo
 - Date and shift selection for Frühschicht, Mittelschicht, and Spätschicht.
 - Expandable checklist details and optional notes.
 - Manual demo input for R2P and EOPE. The configurable demo targets are 90 and 120 seconds; lower values are shown as on target.
-- Draft progress is saved in the current browser only. Use **Demo zurücksetzen** to clear it.
+- Required-field validation before shift completion: all checklist items and both KPI values must be present and valid.
+- Finalized shifts are read-only and appear in a completion history saved in the current browser.
+- A printable shift report can be saved as PDF through the browser's print dialog.
+- Drafts and completion history remain in the current browser only. Use **Demo zurücksetzen** to clear them.
 - Planned sections are clearly marked and are not presented as working features.
 
 ## Technology
@@ -25,7 +28,7 @@ See [TASKS.md](./TASKS.md) for the persistent milestone list and session workflo
 - CSS for responsive layout and styling.
 - Browser `localStorage` for visitor-isolated demo progress.
 
-The first milestone uses browser storage so visitors can try the checklist without registration or a shared database. Express and SQL persistence can be added in a later milestone after the workflows are established.
+The current feature set uses browser storage so visitors can try the workflows without registration or a shared database. No backend or restaurant-system integration is included.
 
 ## Run locally
 
@@ -46,13 +49,13 @@ npm run preview
 ## Demo notes
 
 - There is one simulated **Schichtleitung** profile and no real registration.
-- Checklist items, notes, and demo KPI inputs are isolated to the visitor's browser and can be cleared from the header.
+- Checklist items, notes, demo KPI inputs, and completed reports are isolated to the visitor's browser and can be cleared from the header.
 - The KPI readings shown are fictional examples. The app does not connect to restaurant systems or calculate the underlying timings.
 - No real employee records, schedules, operational reports, learning documents, screenshots, or workplace data are included.
 
 ## Planned work
 
-Shift completion and PDF history, the monthly duty roster, repair and complaint workflows, training records and original learning materials, remaining dashboard content, and final responsive polish will be added in later, reviewable milestones.
+The monthly duty roster, repair and complaint workflows, training records and original learning materials, remaining dashboard content, and final responsive polish will be added in later, reviewable milestones.
 
 ## Contribution and AI assistance
 

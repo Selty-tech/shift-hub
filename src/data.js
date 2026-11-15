@@ -16,6 +16,29 @@ export const kpiTargets = {
   eope: { label: 'EOPE', target: 120, unit: 'Sekunden' },
 }
 
+export function validateShiftCompletion(record) {
+  const errors = []
+  const incompleteCount = checklistTemplate.filter((task) => (
+    !record.items?.find((item) => item.id === task.id)?.done
+  )).length
+
+  if (incompleteCount > 0) {
+    errors.push(`${incompleteCount} ${incompleteCount === 1 ? 'Aufgabe ist' : 'Aufgaben sind'} noch offen.`)
+  }
+
+  for (const [key, metric] of Object.entries(kpiTargets)) {
+    const rawValue = record[`${key}Value`]
+    const value = Number(rawValue)
+    if (rawValue === null || rawValue === undefined || String(rawValue).trim() === '') {
+      errors.push(`${metric.label} fehlt.`)
+    } else if (!Number.isInteger(value) || value < 0 || value > 999) {
+      errors.push(`${metric.label} muss eine ganze Zahl zwischen 0 und 999 sein.`)
+    }
+  }
+
+  return errors
+}
+
 export const demoReadings = { r2p: 84, eope: 109 }
 
 export const checklistTemplate = [
@@ -91,5 +114,6 @@ export function createShiftDraft(date, shiftId) {
     r2pValue: '',
     eopeValue: '',
     updatedAt: null,
+    finalizedAt: null,
   }
 }

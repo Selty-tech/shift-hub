@@ -1,6 +1,6 @@
 # ShiftHub task list
 
-Last reviewed: 2026-11-13
+Last reviewed: 2026-11-15
 
 Re-check the current code and production demo before selecting work in a new session. Choose and complete one milestone at a time.
 
@@ -12,12 +12,14 @@ Re-check the current code and production demo before selecting work in a new ses
 - [x] Expandable checklist tasks, completion timestamps, and optional notes.
 - [x] Manual R2P and EOPE demo values with targets of 90 and 120 seconds.
 - [x] Drafts saved per date and shift in the current browser's `localStorage`.
+- [x] Required-field validation before completion (all checklist items and both valid KPI values).
+- [x] Finalized shifts become read-only and appear in a local completion history.
+- [x] Printable shift reports with browser print-to-PDF support.
 - [x] Demo reset that clears this browser's saved records.
 - [x] Public production deployment with Vercel login protection disabled.
 
 ## Remaining milestones
 
-- [ ] Shift completion: required-field validation, finalization, completion history, and PDF export.
 - [ ] Monthly duty roster.
 - [ ] Repair reporting and status tracking.
 - [ ] Complaint and guest-feedback tracking.
@@ -25,6 +27,8 @@ Re-check the current code and production demo before selecting work in a new ses
 - [ ] Remaining dashboard content and final accessibility/responsive polish.
 
 Confirm each item against the latest code before choosing the next milestone. Planned screens and roadmap text do not count as implemented functionality.
+
+The PDF action uses the browser print dialog; visitors choose **Save as PDF** there. Drafts and completion history stay in local storage on the current device. The current project does not use a backend.
 
 ## Project constraints
 

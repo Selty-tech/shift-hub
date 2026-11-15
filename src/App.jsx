@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import {
   createShiftDraft,
   demoProfile,
+  validateShiftCompletion,
 } from './data'
 import {
   addDays,
@@ -63,13 +64,16 @@ function App() {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, records: nextRecords }))
       setSaveMessage(`${message} · ${formatTime(new Date().toISOString())}`)
+      return true
     } catch {
       setSaveMessage('Browser-Speicher ist nicht verfügbar. Änderungen bleiben nur bis zum Schließen dieser Seite erhalten.')
+      return false
     }
   }
 
   function updateCurrentRecord(patch) {
     const existing = recordsRef.current[recordKey] ?? createShiftDraft(selectedDate, selectedShift)
+    if (existing.finalizedAt) return
     const nextRecord = { ...existing, ...patch, updatedAt: new Date().toISOString() }
     saveRecords({ ...recordsRef.current, [recordKey]: nextRecord })
   }
@@ -92,12 +96,32 @@ function App() {
 
   function saveDraft() {
     const existing = recordsRef.current[recordKey] ?? currentRecord
+    if (existing.finalizedAt) return
     const nextRecord = { ...existing, updatedAt: new Date().toISOString() }
     saveRecords({ ...recordsRef.current, [recordKey]: nextRecord }, 'Entwurf gespeichert')
   }
 
+  function finalizeCurrentShift() {
+    const existing = recordsRef.current[recordKey] ?? currentRecord
+    if (existing.finalizedAt || validateShiftCompletion(existing).length > 0) return false
+
+    const completedRecord = {
+      ...existing,
+      finalizedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+    return saveRecords({ ...recordsRef.current, [recordKey]: completedRecord }, 'Schicht abgeschlossen')
+  }
+
+  function openCompletedShift(date, shiftId) {
+    setSelectedDate(date)
+    setSelectedShift(shiftId)
+    setWeekStart(startOfWeek(dateFromKey(date)))
+    setActivePage('shift')
+  }
+
   function resetDemo() {
-    if (!window.confirm('Alle gespeicherten Checklisten und Demo-Eingaben in diesem Browser zurücksetzen?')) return
+    if (!window.confirm('Alle gespeicherten Entwürfe, abgeschlossenen Schichtberichte und Demo-Eingaben in diesem Browser zurücksetzen?')) return
     try {
       window.localStorage.removeItem(STORAGE_KEY)
       recordsRef.current = {}
@@ -187,12 +211,15 @@ function App() {
               selectedDate={selectedDate}
               selectedShift={selectedShift}
               record={currentRecord}
+              records={records}
               saveMessage={saveMessage}
               onDateChange={handleDateChange}
               onShiftChange={setSelectedShift}
               onItemChange={updateChecklistItem}
               onKpiChange={(key, value) => updateCurrentRecord({ [`${key}Value`]: value })}
               onSave={saveDraft}
+              onFinalize={finalizeCurrentShift}
+              onOpenCompleted={openCompletedShift}
             />
           )}
           {['roster', 'training', 'more'].includes(activePage) && (
