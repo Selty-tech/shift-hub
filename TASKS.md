@@ -16,6 +16,7 @@ Re-check the current code and production demo before selecting work in a new ses
 - [x] Finalized shifts become read-only and appear in a local completion history.
 - [x] Printable shift reports with browser print-to-PDF support.
 - [x] Demo reset that clears this browser's saved records.
+- [x] Responsive dashboard, checklist, and planned screens with touch-sized controls; checked at phone, tablet, desktop, and landscape sizes.
 - [x] Public production deployment with Vercel login protection disabled.
 
 ## Remaining milestones
@@ -24,7 +25,7 @@ Re-check the current code and production demo before selecting work in a new ses
 - [ ] Repair reporting and status tracking.
 - [ ] Complaint and guest-feedback tracking.
 - [ ] Full training workflows, including assignments, materials, and completion history.
-- [ ] Remaining dashboard content and final accessibility/responsive polish.
+- [ ] Remaining dashboard content and a fuller accessibility review.
 
 Confirm each item against the latest code before choosing the next milestone. Planned screens and roadmap text do not count as implemented functionality.
 

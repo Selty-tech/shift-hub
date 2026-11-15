@@ -179,7 +179,7 @@ function App() {
         </a>
         <div className="topbar-right">
           <span className="demo-chip"><span /> Portfolio-Demo</span>
-          <button className="reset-button" type="button" onClick={resetDemo}><Icon name="reset" size={16} /><span>Demo zurücksetzen</span></button>
+          <button className="reset-button" type="button" onClick={resetDemo} aria-label="Demo zurücksetzen"><Icon name="reset" size={16} /><span>Demo zurücksetzen</span></button>
         </div>
       </header>
 

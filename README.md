@@ -1,5 +1,7 @@
 # ShiftHub
 
+Live demo: https://shift-hub-selty2.vercel.app/
+
 A mobile-first portfolio demo for organizing fictional restaurant shift information. The interface and records are being built from scratch, inspired by a practical problem I experienced as a shift leader: details spread across paper checklists and chat messages can be difficult to find during a busy shift.
 
 This is an independent portfolio implementation. It is not the original workplace app and has not been deployed at a workplace.
@@ -30,6 +32,10 @@ See [TASKS.md](./TASKS.md) for the persistent milestone list and session workflo
 
 The current feature set uses browser storage so visitors can try the workflows without registration or a shared database. No backend or restaurant-system integration is included.
 
+## Responsive layout
+
+The dashboard and checklist fit phone, tablet, and desktop screens. Dashboard cards stack on narrow screens, the sidebar changes to a fixed bottom navigation on phones, and long checklist text wraps. Navigation, date and week controls, shift choices, task details, checklist actions, and form fields have touch-sized targets; phone text and inputs stay readable without zooming. Layout and touch flows were checked at 320, 375, 390, 768, and 1440 pixels, plus portrait and landscape sizes.
+
 ## Run locally
 
 Requires Node.js 20.19+ or 22.12+.
@@ -55,7 +61,7 @@ npm run preview
 
 ## Planned work
 
-The monthly duty roster, repair and complaint workflows, training records and original learning materials, remaining dashboard content, and final responsive polish will be added in later, reviewable milestones.
+The monthly duty roster, repair and complaint workflows, training records and original learning materials, and remaining dashboard content will be added in later, reviewable milestones. These sections remain labeled as planned until they work.
 
 ## Contribution and AI assistance
 
